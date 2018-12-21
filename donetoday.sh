@@ -66,7 +66,6 @@ if [[ $FIRSTPARAM =~ ^[0-9]{8}$ ]]; then
         exit 0
     fi
 else
-    echo "Called addtask with $1"
     addtask $YEAR$DATE "$1"
     exit 0
 fi
