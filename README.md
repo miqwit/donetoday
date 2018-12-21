@@ -1,2 +1,40 @@
-# donetoday
-A script to store tasks done today (or any other day). Keep track of your progress
+# Done Today
+
+A script to store tasks done today (or any other day). Keep track of your progress.
+
+# Installation
+
+Done Today is a bash script. Download it, give it execution rights and run it. Alternatively you can put it (or a symbolic link) to a folder which is in your path.
+
+```
+chmod u+x donetoday.sh
+./donetoday.sh
+```
+
+```
+cp donetoday.sh /path/in/my/PATH/var/donetoday
+donetoday
+```
+
+This has been tested only on Linux Ubuntu.
+
+# Usage
+
+- Add a task for today: donetoday "I've done this"
+- Add a task for a given day: donetoday 20181220 "I've done this"
+- View tasks of today: donetoday
+- View tasks of a given day: donetoday 20181221
+- Help: donetoday -h
+
+# Implementation
+
+This script creates a folder ~/.donetoday. Each day is a file under a year subfolder.
+
+```
+~/.donetoday/
+~/.donetoday/2018
+~/.donetoday/2018/1221.txt
+~/.donetoday/2018/1220.txt
+```
+
+This script is a helper to manipulate these folder easily
