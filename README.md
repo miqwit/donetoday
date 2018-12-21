@@ -26,6 +26,32 @@ This has been tested only on Linux Ubuntu.
 - View tasks of a given day: donetoday 20181221
 - Help: donetoday -h
 
+```
+~$ donetoday
+No tasks found for date 20181221
+~$ donetoday "Read Docker documentation"
+Added Read Docker documentation.
+Good job!
+~$ donetoday "Called mom"
+Added Called mom.
+Good job!
+~$ donetoday
+Done 20181221
+----------
+Read Docker documentation
+Called mom
+----------
+~$ donetoday 20181220 "Read two chapters of book X"
+Added Read two chapters of book X.
+Good job!
+~$ donetoday 20181220
+Done 20181220
+----------
+Read two chapters of book X
+----------
+
+```
+
 # Implementation
 
 This script creates a folder ~/.donetoday. Each day is a file under a year subfolder.
