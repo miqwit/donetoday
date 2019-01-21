@@ -20,11 +20,13 @@ This has been tested only on Linux Ubuntu.
 
 # Usage
 
-- Add a task for today: donetoday "I've done this"
-- Add a task for a given day: donetoday 20181220 "I've done this"
-- View tasks of today: donetoday
-- View tasks of a given day: donetoday 20181221
-- Help: donetoday -h
+- Add a task for today:            `donetoday "I've done this"̀`
+- Add a task for a given day:      `donetoday 20181220 "I've done this"`
+- Add a task for a day before:     `donetoday -1 "I've done this"`
+- View tasks of today:             `donetoday`
+- View tasks of a given day:       `donetoday 20181221`
+- View tasks of N previous days:   `donetoday show N`
+- Help:                            `donetoday -h`
 
 ```
 ~$ donetoday
