@@ -4,6 +4,7 @@ DIR=~/.donetoday
 function usage {
     echo "Usage:"
     echo "- Add a task for today:            donetoday \"I've done this\""
+    echo "- Add several tasks for today:     donetoday \"I've done this\" \"I've done that\""
     echo "- Add a task for a given day:      donetoday 20181220 \"I've done this\""
     echo "- Add a task for a day before:     donetoday -1 \"I've done this\""
     echo "- View tasks of today:             donetoday"
@@ -26,6 +27,7 @@ function addtask {
     # Done
     echo "Added $2."
     echo "Good job!"
+    echo ""
 }
 
 function showday {
@@ -36,9 +38,8 @@ function showday {
         echo "No tasks found for date $1"
     else
         echo "Done $1"
-        echo "----------"
+        echo "-------------"
         cat $FILEPATH
-        echo "----------"
     fi
 }
 
@@ -64,7 +65,6 @@ fi
 # If first parameter is -N where N is a number, convert it to date
 if [[ $FIRSTPARAM =~ ^\-[0-9]$ ]]; then
     FIRSTPARAM=`date +%Y%m%d -d "${FIRSTPARAM:1:1} day ago"`
-    echo $FIRSTPARAM
 fi
 
 # If first parameter is a date, display content of that date or add new content
@@ -73,16 +73,18 @@ if [[ $FIRSTPARAM =~ ^[0-9]{8}$ ]]; then
         showday $FIRSTPARAM
         exit 0
     else
-        # Add new task to this day
-        addtask $FIRSTPARAM "$2"
+	    varnum=0
+        for var in "$@"
+        do
+	        varnum=$((varnum+1))
+	        if [ $varnum -lt 2 ]; then
+		        continue
+	        fi
+            # Add new task to this day
+            addtask $FIRSTPARAM "$var"
+        done
         exit 0
     fi
-fi
-
-# If only one parameter
-if [ "$#" -lt 2 ]; then
-    addtask $YEAR$DATE "$1"
-    exit 0
 fi
 
 # Show multiple days
@@ -93,6 +95,15 @@ if [[ "$FIRSTPARAM" == "show" ]]; then
         DATETOSHOW=`date +%Y%m%d -d "$i day ago"`
         showday $DATETOSHOW
         echo
+    done
+    exit 0
+fi
+
+# If not show
+if [ "$#" -ge 2 ]; then
+    for var in "$@"
+    do
+        addtask $YEAR$DATE "$var"
     done
     exit 0
 fi
