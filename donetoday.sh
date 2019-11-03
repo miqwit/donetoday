@@ -100,7 +100,7 @@ if [[ "$FIRSTPARAM" == "show" ]]; then
 fi
 
 # If not show
-if [ "$#" -ge 2 ]; then
+if [ "$#" -ge 1 ]; then
     for var in "$@"
     do
         addtask $YEAR$DATE "$var"
